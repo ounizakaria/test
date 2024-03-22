@@ -1,0 +1,107 @@
+<div class="col-12" >
+
+  <div class="header row p-2 justify-between">
+    <input type="text" class="col-5 fa fa-search" id="inputPassword2" placeholder="Filter">
+    <button class="btn btn-secondary col-2" (click)="add()" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="fa fa-plus"></i> Add Service</button>
+  </div>
+
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">price</th>
+      <th scope="col">description</th>
+      <th scope="col">duration</th>
+      <th scope="col">category</th>
+      <th scope="col">location</th>
+      <th scope="col">document</th>
+      <th scope="col">contact</th>
+      <th scope="col">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr *ngFor="let data of allservice">
+      <td>{{data.name}}</td>
+      <td>{{data.price}}</td>
+      <td>{{data.description}}</td>
+      <td>{{data.duration}}</td>
+      <td>{{data.category}}</td>
+      <td>{{data.location}}</td>
+      <td>{{data.document}}</td>
+      <td>{{data.contact}}</td>
+      <td>
+          <button class="text-info" (click)="edit(data)"  data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="fas fa-edit "></i></button>&nbsp;
+          <button class="text-danger" (click)="deleteser(data)"> <i class="fa fa-trash"></i></button>
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+<!-- Modal -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div style="background-color:#003049;" class="modal-header">
+        <h5 style="color: #fdf0d5; font-size: 26px;" class="modal-title" id="exampleModalLabel">Service Touristique</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form  [formGroup]="formValue" >
+          <div class="mb-3">
+            <label for="" class="form-label">Name</label>
+            <input type="text" formControlName="Name" class="form-control" >
+            <small *ngIf="formValue.get('Name')?.invalid && formValue.get('Name')?.touched " class="text-danger"> name is required</small>
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">description</label>
+            <input type="text" formControlName="description" class="form-control" >
+            <small *ngIf="formValue.get('description')?.invalid && formValue.get('description')?.touched " class="text-danger"> description is required</small>
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">price</label>
+            <input type="number" formControlName="price" class="form-control"  >
+            <small *ngIf="formValue.get('price')?.invalid && formValue.get('price')?.touched " class="text-danger"> price is required</small>
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">duration</label>
+            <input type="number" formControlName="duration" class="form-control">
+            <small *ngIf="formValue.get('duration')?.invalid && formValue.get('duration')?.touched " class="text-danger"> duration is required</small>
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Category</label>
+            <input type="text" formControlName="category"  class="form-control" >
+            <small *ngIf="formValue.get('category')?.invalid && formValue.get('category')?.touched " class="text-danger"> category is required</small>
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Location</label>
+            <input type="text"formControlName="location" class="form-control"  >
+            <small *ngIf="formValue.get('location')?.invalid && formValue.get('location')?.touched " class="text-danger"> location is required</small>
+          </div>
+
+          <div class="mb-3">
+            <label  class="form-label">document</label>
+            <input type="text" formControlName="document" class="form-control">
+            <small *ngIf="formValue.get('document')?.invalid && formValue.get('document')?.touched " class="text-danger"> document is required</small>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">contact</label>
+            <input type="text" formControlName="contact" class="form-control">
+            <small *ngIf="formValue.get('contact')?.invalid && formValue.get('contact')?.touched " class="text-danger"> contact is required</small>
+          </div>
+
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button  class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button  *ngIf="showadd" class="btn btn-success" (click)="addServicetori" [disabled]="formValue.invalid">add </button>
+        <button  *ngIf="showupdate" class="btn btn-success" (click)="update" [disabled]="formValue.invalid"> update </button>
+      </div>
+    </div>
+  </div>
+</div>
+

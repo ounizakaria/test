@@ -1,0 +1,32 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-right: 5%;
+}
+
+li {
+  float: right;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+li a {
+  display: block;
+  color: #2855C3;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Change the link color to #111 (black) on hover */
+.nav-item a:hover {
+  color: #cb2828;
+}
+.navbar-list {
+  display: inline-block;
+}
+
+.navbar-list li {
+  display: inline-block;
+}
